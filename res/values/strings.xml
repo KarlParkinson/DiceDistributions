@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Dice Distributions</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="numRolls_array">
+        <item>10</item>
+        <item>100</item>
+        <item>1000</item>
+        <item>10000</item>
+    </string-array>
+
+    <string name="roll_button_string">Roll</string>
+    <string name="title_activity_histogram">HistogramActivity</string>
+    <string name="title_activity_stats">StatsActivity</string>
+    <string name="stats_option_string">Statistics</string>
+    <string name="histogram_string">Histogram</string>
+    <string name="dice_distributions_string">Dice Distributions</string>
+    <string name="statistics_string">Statistics</string>
+
+</resources>
