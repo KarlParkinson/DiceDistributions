@@ -1,5 +1,7 @@
 package com.example.dicedistributions;
 
+import java.text.DecimalFormat;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,8 @@ public class MyAdapter extends BaseAdapter {
 	private final int[] numbers;
 	private final double[] expectedDistribution;
 	private final double[] observedDistribution;
+	
+	private DecimalFormat myFormat = new DecimalFormat("0.00000");
 	
 	public MyAdapter(Context ctx, int[] nums, double[] expected, double[] observed) {
 		
@@ -50,12 +54,14 @@ public class MyAdapter extends BaseAdapter {
 		
 		textView1.setText(String.valueOf(numbers[position]));
 		try{
-			textView2.setText(String.valueOf(expectedDistribution[position]));
+			String expectedDoubleString = myFormat.format(expectedDistribution[position]);
+			textView2.setText(expectedDoubleString);
 		} catch(NullPointerException e) {
-			textView2.setText(String.valueOf(0.1667));
+			textView2.setText(String.valueOf(0.16667));
 		}
-		textView3.setText(String.valueOf(observedDistribution[position]));
-		
+		String observedDoubleString = myFormat.format(observedDistribution[position]);
+		textView3.setText(observedDoubleString);
+
 		return row;
 	}
 

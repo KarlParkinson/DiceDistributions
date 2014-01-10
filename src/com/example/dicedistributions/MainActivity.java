@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
 	private Spinner numRollsSpinner;
 	private Button RollDiceButton;
 	
-	private int numDice;
+	private int numDice = 1;
 	private int numRolls;
 	
 	public static String NUM_DICE = "com.example.dicedistributions.numDice";
@@ -42,7 +42,7 @@ public class MainActivity extends Activity {
 		numDiceSeekBar = (SeekBar) findViewById(R.id.numDiceSeekBar);
 		numDiceTV = (TextView) findViewById(R.id.numDiceTextView);
 		numRollsSpinner = (Spinner) findViewById(R.id.NumRollsSpinner);
-		RollDiceButton = (Button) findViewById(R.id.RollDiceButton);
+		RollDiceButton = (Button) findViewById(R.id.RollButton);
 		
 		
 		//Methods to take care of initialization of Spinner (and SeekBar?)
@@ -104,7 +104,7 @@ public class MainActivity extends Activity {
 		@Override
 		public void onProgressChanged(SeekBar arg0, int arg1, boolean arg2) {
 			
-			numDice = (numDiceSeekBar.getProgress());
+			numDice = (numDiceSeekBar.getProgress() + 1);
 			numDiceTV.setText(String.format("%d", numDice));
 			
 		}

@@ -65,7 +65,31 @@ public class DrawThread extends Thread {
 	}
 
 	private double[] computeExpected() {
+		
+		double numSides = 6;
+		double numDice = dice.numDice;
+		double current = numDice;
+		double upperBound = numDice*6;
+		double space = (int) Math.pow(numSides, numDice);
+		//System.out.println(space);
+		double[] expected = new double[(int) ((upperBound - current)+1)];
+		
+		while (current <= upperBound) {
+			
+			double sum = 0;
+			for(double i = 0; i<=Math.floor((current-numDice)/numSides); i++) {
+				// Generating function for number of ways to roll a certain sum on n dice with x sides.
+				sum += Math.pow(-1, i) * choose(numDice, i) * choose((current-1)-numSides*i, numDice-1);
+			}
+			//System.out.println(sum/space);
+			expected[(int) (current-numDice)] = sum/space;
+			current++;
+			
+		}
+		
+		return expected;
 
+		/*
 		switch(dice.numDice) {
 		case(1) :
 			double[] expected1 = {0.16667, 0.16667, 0.16667, 0.16667, 0.16667, 0.16667};
@@ -89,6 +113,25 @@ public class DrawThread extends Thread {
 			double[] expectedDefault = {0.0};
 			return expectedDefault;
 		}
+		*/
+	}
+	
+	private double choose(double n, double k) {
+		// TODO Auto-generated method stub
+		double numerator = factorial(n);
+		double denominator = factorial(k)*factorial(n-k);
+		return numerator/denominator;
+	}
+
+	private double factorial(double n) {
+		// TODO Auto-generated method stub
+		double product = 1;
+		while (n > 0) {
+			product *= n;
+			n--;
+		}
+		
+		return product;
 	}
 	
 	private void computeObserved() {
